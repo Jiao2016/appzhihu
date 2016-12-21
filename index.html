@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width">
+    <meta name="referrer" content="never">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/swiper.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.0/angular-sanitize.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/controller.js"></script>
+</head>
+<body>
+<header>
+    <ul class="lines">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <a href="#/">首页</a>
+</header>
+<!--banner-->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background:url('imgs/1.jpg') no-repeat center/ 100% auto"></div>
+        <div class="swiper-slide" style="background:url('imgs/2.jpg') no-repeat center/ 100% auto"></div>
+        <div class="swiper-slide" style="background:url('imgs/3.jpg') no-repeat center/ 100% auto"></div>
+        <div class="swiper-slide" style="background:url('imgs/4.jpg') no-repeat center/ 100% auto"></div>
+        <div class="swiper-slide" style="background:url('imgs/5.jpg') no-repeat center/ 100% auto"></div>
+    </div>
+    <!--&lt;!&ndash; 如果需要分页器 &ndash;&gt;-->
+    <div class="swiper-pagination"></div>
+</div>
+<div class="mask"></div>
+<div class="fixlist">
+    <div class="top"></div>
+    <a href="#/" class="title">首页</a>
+    <ul ng-controller="t">
+        <li ng-repeat="v in ts">
+            <a href="#/item/{{v.id}}">{{v.name}}</a>
+            <div class="jia">+</div>
+        </li>
+    </ul>
+</div>
+<section ng-view>
+
+</section>
+</body>
+<script>
+    var lines=document.querySelector(".lines");
+    var list=document.querySelector('.fixlist');
+    var mask=document.querySelector('.mask');
+    lines.onclick=function(){
+        this.style.transform="rotate(90deg)"
+        list.style.transform="translateX(0)";
+        mask.style.display="block"
+    }
+    mask.onclick=Mask;
+    function Mask(){
+        lines.style.transform="rotate(0)"
+        list.style.transform="translateX(-100%)";
+        mask.style.display="none"
+    }
+    list.onclick=Mask;
+//    banner
+    var mySwiper = new Swiper ('.swiper-container', {
+        loop: true,
+//        // 如果需要分页器
+        pagination: '.swiper-pagination',
+    })
+</script>
+</html>

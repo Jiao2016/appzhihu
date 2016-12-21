@@ -1,0 +1,40 @@
+var ctrl=angular.module("ctrl",["ngSanitize"])
+ctrl.controller('home',function($scope,$http){
+    $http({
+        method:'get',
+        url:'php/api.php?url=http://news-at.zhihu.com/api/4/news/latest',
+        responseType:'json',
+    }).then(function(res){
+        $scope.list=res.data.stories;
+    })
+})
+ctrl.controller('show',function($scope,$http,$routeParams){
+    $http({
+        method:'get',
+        url:'php/api.php?url=http://news-at.zhihu.com/api/4/news/'+$routeParams.id,
+        responseType:'json',
+    }).then(function(res){
+        $scope.one=res.data;
+        console.log(res.data.body)
+    })
+})
+ctrl.controller('t',function($scope,$http,$routeParams){
+    $http({
+        method:'get',
+        url:'php/api.php?url=http://news-at.zhihu.com/api/4/themes',
+        responseType:'json',
+    }).then(function(res){
+        $scope.ts=res.data.others;
+        // console.log(res.data.)
+    })
+})
+ctrl.controller('showlist',function($scope,$http,$routeParams){
+    $http({
+        method:'get',
+        url:'php/api.php?url=http://news-at.zhihu.com/api/4/theme/'+$routeParams.id,
+        responseType:'json',
+    }).then(function(res){
+        $scope.lis=res.data.stories;
+        console.log($routeParams.id)
+    })
+})

@@ -1,0 +1,8 @@
+<ul class="newlist">
+    <li ng-repeat="v in lis">
+        <a href="#/show/{{v.id}}">
+            <img src="{{v.images[0]||'imgs/logo.png'}}" alt="">
+            <span class="title">{{v.title}}</span>
+        </a>
+    </li>
+</ul>
